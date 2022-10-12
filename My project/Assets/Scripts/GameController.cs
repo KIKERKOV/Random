@@ -21,30 +21,30 @@ public class GameController : MonoBehaviour
     public void EnemySymbolGenerate()
     {
         string generatedSymbol = "";
-        int action = Random.RandomRange(0, 3);
+        int action = Random.Range(0, 3);
         if (action==0)
         {
             generatedSymbol = "Rock";
             _enemyChoice = 0;
-            _enemyRock.active = true;
-            _enemyPaper.active = false;
-            _enemyScissors.active = false;
+            _enemyRock.SetActive(true);
+            _enemyPaper.SetActive(false);
+            _enemyScissors.SetActive(false);
         }
         else if (action==1)
         {
             generatedSymbol = "Paper";
             _enemyChoice = 1;
-            _enemyRock.active = false;
-            _enemyPaper.active = true;
-            _enemyScissors.active = false;
+            _enemyRock.SetActive(false);
+            _enemyPaper.SetActive(true);
+            _enemyScissors.SetActive(false);
         }
         else
         {
             generatedSymbol = "Scissors";
             _enemyChoice = 2;
-            _enemyRock.active = false;
-            _enemyPaper.active = false;
-            _enemyScissors.active = true;
+            _enemyRock.SetActive(false);
+            _enemyPaper.SetActive(false);
+            _enemyScissors.SetActive(true);
         }
         enemyAction = action;
         CurrentAction = "Enemy has chosen:"+generatedSymbol;
@@ -56,44 +56,47 @@ public class GameController : MonoBehaviour
 
     public void PlayerSymbolGenerate()
     {
-        int action = Random.RandomRange(0, 3);
+        int action = Random.Range(0, 3);
         if (action == 0)
         {
-            _playerRock.active = true;
-            _playerPaper.active = false;
-            _payerScissors.active = false;
+            _playerRock.SetActive(true);
+            _playerPaper.SetActive(false);
+            _payerScissors.SetActive(false);
         }
         else if (action == 1)
         {
-            _playerRock.active = false;
-            _playerPaper.active = true;
-            _payerScissors.active = false;
+            _playerRock.SetActive(false);
+            _playerPaper.SetActive(true);
+            _payerScissors.SetActive(false);
         }
         else
         {
-            _playerRock.active = false;
-            _playerPaper.active = false;
-            _payerScissors.active = true;
+            _playerRock.SetActive(false);
+            _playerPaper.SetActive(false);
+            _payerScissors.SetActive(true);
         }
         myAction = action;
     }
 
     public void GameOutcome()
     {
-        string result;
 
-        result = "Player Wins:" + _enemyChoice;
+        int result = 0;
 
+        if (result == 0)
+        {
+            _playerWins.SetActive(true);
+        }
 
         //Calculate who is winner who is loser
-       
- 
+
+
         //Koj e pobednikot?
         //Kako da se definira koj e pobednik
         //if enemy is rock and player is paper = player wins 
         if (myAction == 1 && enemyAction ==0)
         {
-            _playerWins.active = true;
+            _playerWins.SetActive(true);
         }    
     }
 
