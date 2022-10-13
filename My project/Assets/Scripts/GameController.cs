@@ -10,8 +10,8 @@ public class GameController : MonoBehaviour
     public GameObject _playerRock;
     public GameObject _playerPaper;
     public GameObject _payerScissors;
-    public GameObject _playerWins;
-    public GameObject _playerLose;
+    public GameObject _playerWin;
+    public GameObject _enemyWin;
     public GameObject _playerDraw;
 
     private int enemyAction = -1;
@@ -22,7 +22,8 @@ public class GameController : MonoBehaviour
     public int _playerChoice;
     public string _enemyChoiceText;
     public string _playerChoiceText;
-    public string _gameOutcome;
+     
+
 
 
     public void EnemySymbolGenerate()
@@ -101,18 +102,17 @@ public class GameController : MonoBehaviour
 
     public void GameOutcome()
     {
-      
 
-        if (myAction == 0 && enemyAction == 0)
+
+        if (_enemyChoice == 0 && _playerChoice == 0)
         {
             //_gameOutcome = "Draw";
             _playerDraw.SetActive(true);
-            Debug.Log("Game outcome is Draw");
+
         }
         else if (myAction == 0 && enemyAction == 1)
         {
-            _playerWins.SetActive(true);
-            //Player Wins
+          //Player Wins
         }
         else if (_enemyChoiceText == "Rock" && _playerChoiceText == "Scissors")
         {
@@ -144,18 +144,12 @@ public class GameController : MonoBehaviour
         }
 
 
-
-
-
         //Calculate who is winner who is loser
 
-
-        //Koj e pobednikot?
-        //Kako da se definira koj e pobednik
         //if enemy is rock and player is paper = player wins 
         if (myAction == 1 && enemyAction ==0)
         {
-            _playerWins.SetActive(true);
+            _playerWin.SetActive(true);
         }    
     }
 
@@ -168,6 +162,6 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
