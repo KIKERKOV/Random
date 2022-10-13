@@ -18,14 +18,15 @@ public class GameController : MonoBehaviour
     private int myAction = -1;
     private string _enemyCurrentAction = "";
     private string _playerCurrentAction = "";
-    public int _enemyChoice;
-    public int _playerChoice;
+    public int _enemyChoice = -1;
+    public int _playerChoice = -1;
     public string _enemyChoiceText;
     public string _playerChoiceText;
-    public int _gameOutcome;
-    public int _draw;
-    public int _playerWins;
-    public int _enemyWins;
+    public bool _gameOutcomeReached;
+    public string _gameOutcome = "";
+    public int _resultDraw = 0;
+    public int _resultPlayerWins = 1;
+    public int _resultEnemyWins = 2;
      
 
 
@@ -160,12 +161,31 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _playerChoice = -1;
+        _enemyChoice = -1;
         
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
+
+        if (_enemyChoice == 0 && _playerChoice == 0 && _gameOutcomeReached ==false)
+        {
+            //_gameOutcome = "Draw";
+            _playerDraw.SetActive(true);
+            _gameOutcomeReached = true;
+            _gameOutcome = "The game is a draw";
+            Debug.Log("The game is a draw");
+
+        }
+
+
+
+
+
 
     }
 }
