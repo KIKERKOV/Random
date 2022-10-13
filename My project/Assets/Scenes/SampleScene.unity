@@ -881,6 +881,7 @@ MonoBehaviour:
   _payerScissors: {fileID: 1310872318}
   _playerWins: {fileID: 611254916}
   _playerLose: {fileID: 564317571}
+  _enemyChoice: 0
 --- !u!4 &915375452
 Transform:
   m_ObjectHideFlags: 0

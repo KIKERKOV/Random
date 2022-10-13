@@ -15,8 +15,12 @@ public class GameController : MonoBehaviour
 
     private int enemyAction = -1;
     private int myAction = -1;
-    private string CurrentAction = "";
+    private string _enemyCurrentAction = "";
+    private string _playerCurrentAction = "";
     public int _enemyChoice;
+    public int _playerChoice;
+    public string _enemyChoiceText;
+    public string _playerChoiceText;
 
     public void EnemySymbolGenerate()
     {
@@ -47,35 +51,49 @@ public class GameController : MonoBehaviour
             _enemyScissors.SetActive(true);
         }
         enemyAction = action;
-        CurrentAction = "Enemy has chosen:"+generatedSymbol;
-        Debug.Log(CurrentAction);
-        Debug.Log("Generate Action!!!");
+        _enemyCurrentAction = "Enemy has chosen:"+generatedSymbol;
+        Debug.Log(_enemyCurrentAction);
+        Debug.Log("Enemy Generated Action!!!");
         Debug.Log("Enemy Choice:"+_enemyChoice);
+        _enemyChoiceText = generatedSymbol;
 
     }
 
     public void PlayerSymbolGenerate()
     {
+        string generatedSymbol = "";
         int action = Random.Range(0, 3);
         if (action == 0)
         {
+            generatedSymbol = "Rock";
+            _playerChoice = 0;
             _playerRock.SetActive(true);
             _playerPaper.SetActive(false);
             _payerScissors.SetActive(false);
         }
         else if (action == 1)
         {
+            generatedSymbol = "Paper";
+            _playerChoice = 1;
             _playerRock.SetActive(false);
             _playerPaper.SetActive(true);
             _payerScissors.SetActive(false);
         }
         else
         {
+            generatedSymbol = "Scissors";
+            _playerChoice = 2;
             _playerRock.SetActive(false);
             _playerPaper.SetActive(false);
             _payerScissors.SetActive(true);
         }
         myAction = action;
+        _playerCurrentAction = "Player has chosen:" + generatedSymbol;
+        Debug.Log(_playerCurrentAction);
+        Debug.Log("Player Generated Action!!!");
+        Debug.Log("Player Choice:" + _playerChoice);
+        _playerChoiceText = generatedSymbol;
+
     }
 
     public void GameOutcome()
