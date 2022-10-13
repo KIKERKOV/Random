@@ -22,6 +22,10 @@ public class GameController : MonoBehaviour
     public int _playerChoice;
     public string _enemyChoiceText;
     public string _playerChoiceText;
+    public int _gameOutcome;
+    public int _draw;
+    public int _playerWins;
+    public int _enemyWins;
      
 
 
