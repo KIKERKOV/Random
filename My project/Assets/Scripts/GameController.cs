@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public GameObject _payerScissors;
     public GameObject _playerWins;
     public GameObject _playerLose;
+    public GameObject _playerDraw;
 
     private int enemyAction = -1;
     private int myAction = -1;
@@ -21,6 +22,7 @@ public class GameController : MonoBehaviour
     public int _playerChoice;
     public string _enemyChoiceText;
     public string _playerChoiceText;
+    public string _gameOutcome;
 
     public void EnemySymbolGenerate()
     {
@@ -99,12 +101,54 @@ public class GameController : MonoBehaviour
     public void GameOutcome()
     {
 
-        int result = 0;
+        bool Draw = false;
+        bool PlayerWins = false;
+        bool EnemyWins = false;
+       
 
-        if (result == 0)
+        if (_enemyChoiceText == "Rock" && _playerChoiceText == "Rock")
         {
-            _playerWins.SetActive(true);
+            //_gameOutcome = "Draw";
+            Draw = true;
+            Debug.Log("Game outcome is Draw");
         }
+        else if (_enemyChoiceText == "Rock" && _playerChoiceText == "Paper")
+        {
+            //Player Wins
+            PlayerWins = true;
+        }
+        else if (_enemyChoiceText == "Rock" && _playerChoiceText == "Scissors")
+        {
+            //Enemy Wins
+        }
+        else if (_enemyChoiceText == "Paper" && _playerChoiceText == "Rock")
+        {
+            //Enemy Wins
+        }
+        else if (_enemyChoiceText == "Paper" && _playerChoiceText == "Paper")
+        {
+            //Draw
+        }
+        else if (_enemyChoiceText == "Paper" && _playerChoiceText == "Scissors")
+        {
+            //Player Wins
+        }
+        else if (_enemyChoiceText == "Scissors" && _playerChoiceText == "Rock")
+        {
+            //Player Wins
+        }
+        else if (_enemyChoiceText == "Scissors" && _playerChoiceText == "Paper")
+        {
+            //Enemy Wins
+        }
+        else if (_enemyChoiceText == "Scissors" && _playerChoiceText == "Scissors")
+        {
+            //Draw
+        }
+
+
+
+
 
         //Calculate who is winner who is loser
 
