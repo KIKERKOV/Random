@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
     public string _playerChoiceText;
     public string _gameOutcome;
 
+
     public void EnemySymbolGenerate()
     {
         string generatedSymbol = "";
@@ -100,22 +101,18 @@ public class GameController : MonoBehaviour
 
     public void GameOutcome()
     {
+      
 
-        bool Draw = false;
-        bool PlayerWins = false;
-        bool EnemyWins = false;
-       
-
-        if (_enemyChoiceText == "Rock" && _playerChoiceText == "Rock")
+        if (myAction == 0 && enemyAction == 0)
         {
             //_gameOutcome = "Draw";
-            Draw = true;
+            _playerDraw.SetActive(true);
             Debug.Log("Game outcome is Draw");
         }
-        else if (_enemyChoiceText == "Rock" && _playerChoiceText == "Paper")
+        else if (myAction == 0 && enemyAction == 1)
         {
+            _playerWins.SetActive(true);
             //Player Wins
-            PlayerWins = true;
         }
         else if (_enemyChoiceText == "Rock" && _playerChoiceText == "Scissors")
         {
