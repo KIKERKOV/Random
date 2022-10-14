@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
 
     public void EnemySymbolGenerate()
     {
+        _gameOutcomeReached = false;
         string generatedSymbol = "";
         int action = Random.Range(0, 3);
         if (action==0)
@@ -70,6 +71,7 @@ public class GameController : MonoBehaviour
 
     public void PlayerSymbolGenerate()
     {
+        _gameOutcomeReached = false;
         string generatedSymbol = "";
         int action = Random.Range(0, 3);
         if (action == 0)
@@ -115,7 +117,7 @@ public class GameController : MonoBehaviour
             _playerDraw.SetActive(true);
 
         }
-        else if (myAction == 0 && enemyAction == 1)
+        else if (myAction == 0 && enemyAction == 0)
         {
           //Player Wins
         }
@@ -148,14 +150,6 @@ public class GameController : MonoBehaviour
             //Draw
         }
 
-
-        //Calculate who is winner who is loser
-
-        //if enemy is rock and player is paper = player wins 
-        if (myAction == 1 && enemyAction ==0)
-        {
-            _playerWin.SetActive(true);
-        }    
     }
 
     // Start is called before the first frame update
@@ -170,19 +164,79 @@ public class GameController : MonoBehaviour
     void Update()
     {
 
-
-
-        if (_enemyChoice == 0 && _playerChoice == 0 && _gameOutcomeReached ==false)
+       
+        if (_enemyChoice == 0 && _playerChoice == 0 && _gameOutcomeReached == false)
         {
-            //_gameOutcome = "Draw";
             _playerDraw.SetActive(true);
+            _playerWin.SetActive(false);
+            _enemyWin.SetActive(false);
             _gameOutcomeReached = true;
             _gameOutcome = "The game is a draw";
-            Debug.Log("The game is a draw");
-
         }
-
-
+        else if (_enemyChoice == 0 && _playerChoice == 1 && _gameOutcomeReached == false)
+        {
+            _playerDraw.SetActive(false);
+            _playerWin.SetActive(true);
+            _enemyWin.SetActive(false);
+            _gameOutcomeReached = true;
+            _gameOutcome = "Player wins";
+        }
+        else if (_enemyChoice == 0 && _playerChoice == 2 && _gameOutcomeReached == false)
+        {
+            _playerDraw.SetActive(false);
+            _playerWin.SetActive(false);
+            _enemyWin.SetActive(true);
+            _gameOutcomeReached = true;
+            _gameOutcome = "Enemy wins";
+        }
+        else if (_enemyChoice == 1 && _playerChoice == 0 && _gameOutcomeReached == false)
+        {
+            _playerDraw.SetActive(false);
+            _playerWin.SetActive(false);
+            _enemyWin.SetActive(true);
+            _gameOutcomeReached = true;
+            _gameOutcome = "Enemy wins";
+        }
+        else if (_enemyChoice == 1 && _playerChoice == 1 && _gameOutcomeReached == false)
+        {
+            _playerDraw.SetActive(true);
+            _playerWin.SetActive(false);
+            _enemyWin.SetActive(false);
+            _gameOutcomeReached = true;
+            _gameOutcome = "The game is a draw";
+        }
+        else if (_enemyChoice == 1 && _playerChoice == 2 && _gameOutcomeReached == false)
+        {
+            _playerDraw.SetActive(false);
+            _playerWin.SetActive(true);
+            _enemyWin.SetActive(false);
+            _gameOutcomeReached = true;
+            _gameOutcome = "Player wins";
+        }
+        else if (_enemyChoice == 2 && _playerChoice == 0 && _gameOutcomeReached == false)
+        {
+            _playerDraw.SetActive(false);
+            _playerWin.SetActive(true);
+            _enemyWin.SetActive(false);
+            _gameOutcomeReached = true;
+            _gameOutcome = "Player wins";
+        }
+        else if (_enemyChoice == 2 && _playerChoice == 1 && _gameOutcomeReached == false)
+        {
+            _playerDraw.SetActive(false);
+            _playerWin.SetActive(false);
+            _enemyWin.SetActive(true);
+            _gameOutcomeReached = true;
+            _gameOutcome = "Enemy wins";
+        }
+        else if (_enemyChoice == 2 && _playerChoice == 2 && _gameOutcomeReached == false)
+        {
+            _playerDraw.SetActive(true);
+            _playerWin.SetActive(false);
+            _enemyWin.SetActive(false);
+            _gameOutcomeReached = true;
+            _gameOutcome = "The game is a draw";
+        }
 
 
 

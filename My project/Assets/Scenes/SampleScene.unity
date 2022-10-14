@@ -964,13 +964,18 @@ MonoBehaviour:
   _playerRock: {fileID: 2070480928}
   _playerPaper: {fileID: 794459194}
   _payerScissors: {fileID: 1310872318}
-  _playerWin: {fileID: 0}
-  _enemyWin: {fileID: 0}
+  _playerWin: {fileID: 611254916}
+  _enemyWin: {fileID: 564317571}
   _playerDraw: {fileID: 3238534}
   _enemyChoice: 0
   _playerChoice: 0
   _enemyChoiceText: 
   _playerChoiceText: 
+  _gameOutcomeReached: 0
+  _gameOutcome: 
+  _resultDraw: 0
+  _resultPlayerWins: 1
+  _resultEnemyWins: 2
 --- !u!4 &915375452
 Transform:
   m_ObjectHideFlags: 0
