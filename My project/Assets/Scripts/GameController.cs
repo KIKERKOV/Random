@@ -30,7 +30,11 @@ public class GameController : MonoBehaviour
      
 
 
-
+    private void ResetScore()
+    {
+        _playerChoice = -1;
+        _enemyChoice = -1;
+    }
     public void EnemySymbolGenerate()
     {
         _gameOutcomeReached = false;
@@ -107,7 +111,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    public void GameOutcome()
+    private void GameOutcome()
     {
 
         if (_enemyChoice == 0 && _playerChoice == 0 && _gameOutcomeReached == false)
@@ -188,14 +192,13 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _playerChoice = -1;
-        _enemyChoice = -1;
-        
+        ResetScore();        
     }
 
     // Update is called once per frame
     void Update()
     {
         GameOutcome();
+
     }
 }
