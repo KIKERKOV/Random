@@ -110,61 +110,6 @@ public class GameController : MonoBehaviour
     public void GameOutcome()
     {
 
-
-        if (_enemyChoice == 0 && _playerChoice == 0)
-        {
-            //_gameOutcome = "Draw";
-            _playerDraw.SetActive(true);
-
-        }
-        else if (myAction == 0 && enemyAction == 0)
-        {
-          //Player Wins
-        }
-        else if (_enemyChoiceText == "Rock" && _playerChoiceText == "Scissors")
-        {
-            //Enemy Wins
-        }
-        else if (_enemyChoiceText == "Paper" && _playerChoiceText == "Rock")
-        {
-            //Enemy Wins
-        }
-        else if (_enemyChoiceText == "Paper" && _playerChoiceText == "Paper")
-        {
-            //Draw
-        }
-        else if (_enemyChoiceText == "Paper" && _playerChoiceText == "Scissors")
-        {
-            //Player Wins
-        }
-        else if (_enemyChoiceText == "Scissors" && _playerChoiceText == "Rock")
-        {
-            //Player Wins
-        }
-        else if (_enemyChoiceText == "Scissors" && _playerChoiceText == "Paper")
-        {
-            //Enemy Wins
-        }
-        else if (_enemyChoiceText == "Scissors" && _playerChoiceText == "Scissors")
-        {
-            //Draw
-        }
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        _playerChoice = -1;
-        _enemyChoice = -1;
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-       
         if (_enemyChoice == 0 && _playerChoice == 0 && _gameOutcomeReached == false)
         {
             _playerDraw.SetActive(true);
@@ -238,8 +183,19 @@ public class GameController : MonoBehaviour
             _gameOutcome = "The game is a draw";
         }
 
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        _playerChoice = -1;
+        _enemyChoice = -1;
+        
+    }
 
-
+    // Update is called once per frame
+    void Update()
+    {
+        GameOutcome();
     }
 }
