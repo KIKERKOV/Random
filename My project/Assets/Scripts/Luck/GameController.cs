@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class GameController : MonoBehaviour
     public GameObject _playerWin;
     public GameObject _enemyWin;
     public GameObject _playerDraw;
+
+    public Text descriptiveText;
 
     private int enemyAction = -1;
     private int myAction = -1;
@@ -27,20 +31,35 @@ public class GameController : MonoBehaviour
     public int _resultDraw = 0;
     public int _resultPlayerWins = 1;
     public int _resultEnemyWins = 2;
-     
 
+
+    public void LuckCombat()
+    {
+        EnemySymbolGenerate();
+        PlayerSymbolGenerate();
+    }
 
     private void ResetScore()
     {
         _playerChoice = -1;
         _enemyChoice = -1;
+        _enemyRock.SetActive(false);
+        _enemyPaper.SetActive(false);
+        _enemyScissors.SetActive(false);
+        _playerRock.SetActive(false);
+        _playerPaper.SetActive(false);
+        _payerScissors.SetActive(false);
+        descriptiveText.text = string.Empty;
+        _playerDraw.SetActive(false);
+        _playerWin.SetActive(false);
+        _enemyWin.SetActive(false);
     }
     public void EnemySymbolGenerate()
     {
         _gameOutcomeReached = false;
         string generatedSymbol = "";
         int action = Random.Range(0, 3);
-        if (action==0)
+        if (action == 0)
         {
             generatedSymbol = "Rock";
             _enemyChoice = 0;
@@ -48,7 +67,7 @@ public class GameController : MonoBehaviour
             _enemyPaper.SetActive(false);
             _enemyScissors.SetActive(false);
         }
-        else if (action==1)
+        else if (action == 1)
         {
             generatedSymbol = "Paper";
             _enemyChoice = 1;
@@ -65,12 +84,12 @@ public class GameController : MonoBehaviour
             _enemyScissors.SetActive(true);
         }
         enemyAction = action;
-        _enemyCurrentAction = "Enemy has chosen:"+generatedSymbol;
+        _enemyCurrentAction = "Enemy has chosen:" + generatedSymbol;
         Debug.Log(_enemyCurrentAction);
         Debug.Log("Enemy Generated Action!!!");
-        Debug.Log("Enemy Choice:"+_enemyChoice);
+        Debug.Log("Enemy Choice:" + _enemyChoice);
         _enemyChoiceText = generatedSymbol;
-
+        GameOutcome();
     }
 
     public void PlayerSymbolGenerate()
@@ -108,7 +127,7 @@ public class GameController : MonoBehaviour
         Debug.Log("Player Generated Action!!!");
         Debug.Log("Player Choice:" + _playerChoice);
         _playerChoiceText = generatedSymbol;
-
+        GameOutcome();
     }
 
     private void GameOutcome()
@@ -187,18 +206,30 @@ public class GameController : MonoBehaviour
             _gameOutcome = "The game is a draw";
         }
 
+        descriptiveText.text = _gameOutcome;
+
+        if (_enemyChoice > -1 && _playerChoice > -1)
+        {
+           StartCoroutine(ResetGameAfter2Seconds());
+        }
+    }
+
+    private IEnumerator ResetGameAfter2Seconds()
+    {
+        yield return new WaitForSeconds(2.0f);
+        ResetScore();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        ResetScore();        
+        ResetScore();
     }
 
     // Update is called once per frame
     void Update()
     {
-        GameOutcome();
+
 
     }
 }
