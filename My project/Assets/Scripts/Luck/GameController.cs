@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    private GameObject[] objects;
     public GameObject _enemyRock;
     public GameObject _enemyPaper;
     public GameObject _enemyScissors;
@@ -132,79 +133,24 @@ public class GameController : MonoBehaviour
 
     private void GameOutcome()
     {
-
         if (_enemyChoice == 0 && _playerChoice == 0 && _gameOutcomeReached == false)
-        {
-            _playerDraw.SetActive(true);
-            _playerWin.SetActive(false);
-            _enemyWin.SetActive(false);
-            _gameOutcomeReached = true;
-            _gameOutcome = "The game is a draw";
-        }
+            Draw();
         else if (_enemyChoice == 0 && _playerChoice == 1 && _gameOutcomeReached == false)
-        {
-            _playerDraw.SetActive(false);
-            _playerWin.SetActive(true);
-            _enemyWin.SetActive(false);
-            _gameOutcomeReached = true;
-            _gameOutcome = "Player wins";
-        }
+            PlayerWins();
         else if (_enemyChoice == 0 && _playerChoice == 2 && _gameOutcomeReached == false)
-        {
-            _playerDraw.SetActive(false);
-            _playerWin.SetActive(false);
-            _enemyWin.SetActive(true);
-            _gameOutcomeReached = true;
-            _gameOutcome = "Enemy wins";
-        }
+            EnemyWins();
         else if (_enemyChoice == 1 && _playerChoice == 0 && _gameOutcomeReached == false)
-        {
-            _playerDraw.SetActive(false);
-            _playerWin.SetActive(false);
-            _enemyWin.SetActive(true);
-            _gameOutcomeReached = true;
-            _gameOutcome = "Enemy wins";
-        }
+            EnemyWins();
         else if (_enemyChoice == 1 && _playerChoice == 1 && _gameOutcomeReached == false)
-        {
-            _playerDraw.SetActive(true);
-            _playerWin.SetActive(false);
-            _enemyWin.SetActive(false);
-            _gameOutcomeReached = true;
-            _gameOutcome = "The game is a draw";
-        }
+            Draw();
         else if (_enemyChoice == 1 && _playerChoice == 2 && _gameOutcomeReached == false)
-        {
-            _playerDraw.SetActive(false);
-            _playerWin.SetActive(true);
-            _enemyWin.SetActive(false);
-            _gameOutcomeReached = true;
-            _gameOutcome = "Player wins";
-        }
+            PlayerWins();
         else if (_enemyChoice == 2 && _playerChoice == 0 && _gameOutcomeReached == false)
-        {
-            _playerDraw.SetActive(false);
-            _playerWin.SetActive(true);
-            _enemyWin.SetActive(false);
-            _gameOutcomeReached = true;
-            _gameOutcome = "Player wins";
-        }
+            PlayerWins();
         else if (_enemyChoice == 2 && _playerChoice == 1 && _gameOutcomeReached == false)
-        {
-            _playerDraw.SetActive(false);
-            _playerWin.SetActive(false);
-            _enemyWin.SetActive(true);
-            _gameOutcomeReached = true;
-            _gameOutcome = "Enemy wins";
-        }
+            EnemyWins();
         else if (_enemyChoice == 2 && _playerChoice == 2 && _gameOutcomeReached == false)
-        {
-            _playerDraw.SetActive(true);
-            _playerWin.SetActive(false);
-            _enemyWin.SetActive(false);
-            _gameOutcomeReached = true;
-            _gameOutcome = "The game is a draw";
-        }
+            Draw();
 
         descriptiveText.text = _gameOutcome;
 
@@ -212,6 +158,40 @@ public class GameController : MonoBehaviour
         {
            StartCoroutine(ResetGameAfter2Seconds());
         }
+    }
+
+    private void Result()
+    {
+
+    }
+
+
+
+    private void EnemyWins()
+    {
+        _playerDraw.SetActive(false);
+        _playerWin.SetActive(false);
+        _enemyWin.SetActive(true);
+        _gameOutcomeReached = true;
+        _gameOutcome = "Enemy wins";
+    }
+
+    private void PlayerWins()
+    {
+        _playerDraw.SetActive(false);
+        _playerWin.SetActive(true);
+        _enemyWin.SetActive(false);
+        _gameOutcomeReached = true;
+        _gameOutcome = "Player wins";
+    }
+
+    private void Draw()
+    {
+        _playerDraw.SetActive(true);
+        _playerWin.SetActive(false);
+        _enemyWin.SetActive(false);
+        _gameOutcomeReached = true;
+        _gameOutcome = "The game is a draw";
     }
 
     private IEnumerator ResetGameAfter2Seconds()
@@ -223,6 +203,8 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        objects = new GameObject[3];
+
         ResetScore();
     }
 
