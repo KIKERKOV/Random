@@ -16,19 +16,12 @@ public class GameController : MonoBehaviour
     public GameObject _enemyWin;
     public GameObject _playerDraw;
     public Text descriptiveText;
-    public GameObject _timer;
-    public Text cooldownTimerText;
-    public float _cooldownTime = 5;
-    public float _cooldownTimer;
     public int _enemyChoice = -1;
     public int _playerChoice = -1;
     public string _enemyChoiceText;
     public string _playerChoiceText;
     public bool _gameOutcomeReached;
     public string _gameOutcome = "";
-    public string _cooldownTimerText = "";
-
-
 
     void Start()
     {
@@ -91,7 +84,6 @@ public class GameController : MonoBehaviour
         _enemyWin.SetActive(false);
         _gameOutcomeReached = false;
         _gameOutcome = string.Empty;
-        _timer.SetActive(false);
     }
 
     private void GameOutcome()
@@ -116,7 +108,6 @@ public class GameController : MonoBehaviour
             Draw();
 
         descriptiveText.text = _gameOutcome;
-        cooldownTimerText.text = _cooldownTimerText;
 
         if (_enemyChoice > -1 && _playerChoice > -1 && _gameOutcomeReached == true)
         {
@@ -158,66 +149,4 @@ public class GameController : MonoBehaviour
         ResetScore();
     }
 
-    private void CoolDownTimer()
-    {
-        if (_gameOutcomeReached == true)
-        {
-            float _timeIncrement = 0.5f;
-
-            for (float i = 1; _cooldownTime > 0 ; i++)
-            {
-                if (_cooldownTimer > 0)
-                {
-                    _cooldownTimer -= Time.deltaTime;
-                }
-                if (_cooldownTimer < 0)
-                {
-                    _cooldownTimer = 0;
-                }
-                if ( )
-                {
-                    
-                }
-            }
-        }
-    }    
-
-
-    /*private void CooldownTimer()
-    {
-        if (_gameOutcomeReached == true)
-        {
-            _cooldownTimer = _cooldownTime;
-
-            for (float i = 0; _cooldownTimer > 0; i++)
-            {
-                if (_cooldownTimer > 0)
-                {
-                    _cooldownTimer -= Time.deltaTime;
-                }
-
-                if (_cooldownTimer < 0)
-                {
-                    _cooldownTimer = 0;
-                }
-
-                float _timeIncrement = 0.5f;
-
-                if (_cooldownTime == 0)
-                {
-                    i = i + _timeIncrement + i;
-                }
-            }
-
-            //show and start timer 
-            // timer will be set to 5 seconds 
-            //every time player gives an input reset timer with 
-
-        }
-        //If both players have chosen a symbol 
-        //Start timer
-        //If the timer is started and players change their choice
-        //Reset timer with less T based on the time it was reset 
-        //Once the timer reaches zero display score outcome 
-    }*/
 }
