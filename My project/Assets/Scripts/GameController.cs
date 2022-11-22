@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
     public string _playerChoiceText;
     public bool _gameOutcomeReached;
     public string _gameOutcome = "";
+    [SerializeField] private GameObject PlayerBackground;
+    [SerializeField] private GameObject EnemyBackground;
 
     void Start()
     {
@@ -114,13 +116,14 @@ public class GameController : MonoBehaviour
             Draw();
 
         descriptiveText.text = _gameOutcome;
+        Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
+        descriptiveText.color = newColor;
 
         if (_enemyChoice > -1 && _playerChoice > -1 && _gameOutcomeReached == true)
         {
             StartCoroutine(ResetGameAfter2Seconds());
         }
     }
-
 
     private void EnemyWins()
     {
