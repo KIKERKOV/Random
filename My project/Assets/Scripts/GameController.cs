@@ -68,6 +68,12 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void LuckCombat()
+    {
+        _enemyChoice = Random.Range(0, 2);
+        _playerChoice = Random.Range(0, 2);
+    }
+
     private void ResetScore()
     {
         _playerChoice = -1;
