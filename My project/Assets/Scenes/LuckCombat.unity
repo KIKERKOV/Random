@@ -959,8 +959,12 @@ MonoBehaviour:
   _playerChoiceText: 
   _gameOutcomeReached: 0
   _gameOutcome: 
+  Timer: {fileID: 0}
   PlayerBackground: {fileID: 0}
   EnemyBackground: {fileID: 0}
+  _timerStartValue: 10
+  _timer: {fileID: 99949901}
+  CooldownTime: 0
 --- !u!1 &787154993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,8 +1259,12 @@ MonoBehaviour:
   _playerChoiceText: 
   _gameOutcomeReached: 0
   _gameOutcome: 
-  PlayerBackground: {fileID: 0}
-  EnemyBackground: {fileID: 0}
+  Timer: {fileID: 0}
+  PlayerBackground: {fileID: 787154993}
+  EnemyBackground: {fileID: 1232611716}
+  _timerStartValue: 10
+  _timer: {fileID: 99949901}
+  CooldownTime: 0
 --- !u!4 &915375452
 Transform:
   m_ObjectHideFlags: 0
@@ -1857,54 +1865,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1679084330}
   m_CullTransparentMesh: 1
---- !u!1 &1706282941
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1706282942}
-  - component: {fileID: 1706282943}
-  m_Layer: 0
-  m_Name: Timer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1706282942
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706282941}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 423.12646, y: 304.26895, z: -4.389724}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1706282943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706282941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 342c51a09c2a13d4a9abea6e57804fd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CooldownTime: 0
-  StartLuckCombat: 1
-  _timerStartValue: 10
-  _timer: {fileID: 99949901}
 --- !u!1 &1736998920
 GameObject:
   m_ObjectHideFlags: 0

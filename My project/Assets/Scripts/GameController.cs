@@ -22,12 +22,19 @@ public class GameController : MonoBehaviour
     public string _playerChoiceText;
     public bool _gameOutcomeReached;
     public string _gameOutcome = "";
+    public GameObject Timer;
     [SerializeField] private GameObject PlayerBackground;
     [SerializeField] private GameObject EnemyBackground;
+    [SerializeField] private float _timerStartValue = 10f;
+    [SerializeField] private Text _timer;
+    public float CooldownTime;
+    //private float _timeIncrement = 0;
+    //private int _combatPhase;
 
     void Start()
     {
         ResetScore();
+        CooldownTime += _timerStartValue;
     }
 
     void Update()
@@ -63,17 +70,19 @@ public class GameController : MonoBehaviour
             _playerScissors.SetActive(true);
             _playerChoice = 2;
         }
-
         if (_gameOutcomeReached == false)
         {
             GameOutcome();
         }
-    }
 
-    public void LuckCombat()
-    {
-        _enemyChoice = Random.Range(0, 2);
-        _playerChoice = Random.Range(0, 2);
+        //ADD TRIGER FOR RESETING COOLDOWINTIMER
+        //if ()
+        //{
+        //    ResetWorseTimer();
+        //}
+
+        StartTimer();
+        RandomizeColor();
     }
 
     private void ResetScore()
@@ -156,6 +165,35 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
         ResetScore();
+    }
+
+    private void StartTimer()
+    {
+        _timer.text = ("T: " + CooldownTime);
+        if (CooldownTime > 0)
+        {
+            CooldownTime -= Time.deltaTime;
+        }
+        if (CooldownTime < 0)
+        {
+            CooldownTime = 0f;
+        }
+    }
+
+    //private void ResetWorseTimer()
+    //{
+
+    //}
+
+
+    private void RandomizeColor()
+    {
+        if (Input.anyKey && CooldownTime > 0)
+        {
+            Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
+            _timer.color = newColor;
+        }
+
     }
 
 }
