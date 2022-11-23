@@ -1901,9 +1901,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 342c51a09c2a13d4a9abea6e57804fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownTimerActive: 1
+  CooldownTime: 0
+  StartLuckCombat: 1
+  _timerStartValue: 10
   _timer: {fileID: 99949901}
-  _incrementedTime: -0.5
 --- !u!1 &1736998920
 GameObject:
   m_ObjectHideFlags: 0

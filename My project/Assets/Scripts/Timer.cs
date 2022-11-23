@@ -6,52 +6,60 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 
 {
-    public float CooldownTime { get => _cooldownTime; set => _cooldownTime = value; }
-    public bool cooldownTimerActive = true;
-    private float _cooldownTimer = 10.0f;
-    private float _cooldownTime;
+    public float CooldownTime;
+    public bool StartLuckCombat = true;
+    [SerializeField] private float _timerStartValue = 10f;
     [SerializeField] private Text _timer;
-    [SerializeField] private float _incrementedTime = -0.5f;
+    private float _timeIncrement = 0;
 
-    private void CoolDownTimer()
-
+    private void Start()
     {
-        if (Input.anyKey && cooldownTimerActive == true) 
-        {
-            _cooldownTimer = CooldownTime;
-            RandomizeColor();
-            if (_cooldownTimer > 0)
-            {
-                _cooldownTimer -= Time.deltaTime;
-            }
-            if (_cooldownTimer < 0)
-            {
-                _cooldownTimer = 0;
-            }
-            for (float i = 0; _cooldownTimer > 0; i++)
-            {
-                float _timeIncrement = 0.5f;
-                if (CooldownTime == 0)
-                {
-                    i = i + _timeIncrement + i;
-                }
-            }
-        }
+        CooldownTime += _timerStartValue;
     }
 
-    private void RandomizeColor()
-    {
-        _timer.text = ("T: " + _cooldownTimer);
-        Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
-        _timer.color = newColor;
-    }
 
     void Update()
     {
-        CoolDownTimer();      
+        RandomizeColor();
+        StartTimer();
+    }
+
+    private void StartTimer()
+    {
+        _timer.text = ("T: " + CooldownTime);
+
+        //CONDITION THAT TRIGGERS REDUCED COOLDOWN TIMER
+        for (int i = 0;CooldownTime > (CooldownTime + (_timeIncrement * _timeIncrement)); i++)
+        {
+            CooldownTime += (_timeIncrement * _timeIncrement);
+            i++;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _timeIncrement -= -0.5f;
+            Debug.Log("Lowered time incrmenet");
+        }
+
+        if (CooldownTime > 0)
+        {
+            CooldownTime -= Time.deltaTime;
+        }
+
+        if (CooldownTime < 0)
+        {
+            CooldownTime = 0f;
+        }
     }
 
 
-
+    private void RandomizeColor()
+    {
+        if (Input.anyKey && CooldownTime > 0)
+        {
+            Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
+            _timer.color = newColor;
+        }
+            
+    }
 }
-
