@@ -12,164 +12,63 @@ public class GameController : MonoBehaviour
     public GameObject _playerRock;
     public GameObject _playerPaper;
     public GameObject _playerScissors;
-    public GameObject _playerWin;
-    public GameObject _enemyWin;
-    public GameObject _playerDraw;
-    public Text descriptiveText;
-    public int _enemyChoice = -1;
-    public int _playerChoice = -1;
-    public string _enemyChoiceText;
-    public string _playerChoiceText;
-    public bool _gameOutcomeReached;
-    public string _gameOutcome = "";
+    public Text gameOutcomeText;
+    public string _playerTwoChoiceText;
+    public string _playerOneChoiceText;
+    public string gameOutcome = "";
+    public float _timeIncrementIncrease = 0f;
     public GameObject Timer;
     [SerializeField] private GameObject PlayerBackground;
     [SerializeField] private GameObject EnemyBackground;
-    [SerializeField] private float _timerStartValue = 10f;
-    [SerializeField] private Text _timer;
+    [SerializeField] private float timerTextStartValue = 10f;
+    [SerializeField] private Text timerText;
     public float CooldownTime;
-    //private float _timeIncrement = 0;
-    //private int _combatPhase;
+    private int _combatPhase;
+    private int _playerOneChoice = 0;
+    private int _playerTwoChoice = 0;
 
-    void Start()
+    // WORK AREA
+
+
+    
+    private void Combat()
     {
-        ResetScore();
-        CooldownTime += _timerStartValue;
-    }
+        if (_playerOneChoice <= 0 && _playerTwoChoice <= 0)
+        {
+            _combatPhase = 0;
+        }
+        if (_playerOneChoice > 0 && _playerTwoChoice > 0)
+        {
+            _combatPhase = 1;
+        }
+       // SETUP START TIMER RESET HERE WITH IF
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q) && _enemyChoice < 0)
-        {
-            _enemyRock.SetActive(true);
-            _enemyChoice = 0;
 
-        }
-        else if (Input.GetKeyDown(KeyCode.W) && _enemyChoice < 0)
+        switch (_combatPhase)
         {
-            _enemyPaper.SetActive(true);
-            _enemyChoice = 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.E) && _enemyChoice < 0)
-        {
-            _enemyScissors.SetActive(true);
-            _enemyChoice = 2;
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) && _playerChoice < 0)
-        {
-            _playerRock.SetActive(true);
-            _playerChoice = 0;
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && _playerChoice < 0)
-        {
-            _playerPaper.SetActive(true);
-            _playerChoice = 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && _playerChoice < 0)
-        {
-            _playerScissors.SetActive(true);
-            _playerChoice = 2;
-        }
-        if (_gameOutcomeReached == false)
-        {
-            GameOutcome();
+            case 0:
+                _combatPhase = 0;
+                break;
+            case 1:
+                _combatPhase = 1;
+                break;
+            case 2:
+                _combatPhase = 2;
+                StartTimer();
+                break;
+            case 3:
+                _combatPhase = 3;
+                ResetWorseTimer();
+                break;
         }
 
-        //ADD TRIGER FOR RESETING COOLDOWINTIMER
-        //if ()
-        //{
-        //    ResetWorseTimer();
-        //}
-
-        StartTimer();
-        RandomizeColor();
     }
 
-    private void ResetScore()
-    {
-        _playerChoice = -1;
-        _enemyChoice = -1;
-        _enemyRock.SetActive(false);
-        _enemyPaper.SetActive(false);
-        _enemyScissors.SetActive(false);
-        _playerRock.SetActive(false);
-        _playerPaper.SetActive(false);
-        _playerScissors.SetActive(false);
-        descriptiveText.text = string.Empty;
-        _playerDraw.SetActive(false);
-        _playerWin.SetActive(false);
-        _enemyWin.SetActive(false);
-        _gameOutcomeReached = false;
-        _gameOutcome = string.Empty;
-    }
-
-    private void GameOutcome()
-    {
-        if (_enemyChoice == 0 && _playerChoice == 0 && _gameOutcomeReached == false)
-            Draw();
-        else if (_enemyChoice == 0 && _playerChoice == 1 && _gameOutcomeReached == false)
-            PlayerWins();
-        else if (_enemyChoice == 0 && _playerChoice == 2 && _gameOutcomeReached == false)
-            EnemyWins();
-        else if (_enemyChoice == 1 && _playerChoice == 0 && _gameOutcomeReached == false)
-            EnemyWins();
-        else if (_enemyChoice == 1 && _playerChoice == 1 && _gameOutcomeReached == false)
-            Draw();
-        else if (_enemyChoice == 1 && _playerChoice == 2 && _gameOutcomeReached == false)
-            PlayerWins();
-        else if (_enemyChoice == 2 && _playerChoice == 0 && _gameOutcomeReached == false)
-            PlayerWins();
-        else if (_enemyChoice == 2 && _playerChoice == 1 && _gameOutcomeReached == false)
-            EnemyWins();
-        else if (_enemyChoice == 2 && _playerChoice == 2 && _gameOutcomeReached == false)
-            Draw();
-
-        descriptiveText.text = _gameOutcome;
-        Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
-        descriptiveText.color = newColor;
-
-        if (_enemyChoice > -1 && _playerChoice > -1 && _gameOutcomeReached == true)
-        {
-            StartCoroutine(ResetGameAfter2Seconds());
-        }
-    }
-
-    private void EnemyWins()
-    {
-        _playerDraw.SetActive(false);
-        _playerWin.SetActive(false);
-        _enemyWin.SetActive(true);
-        _gameOutcomeReached = true;
-        _gameOutcome = "Enemy wins";
-    }
-
-    private void PlayerWins()
-    {
-        _playerDraw.SetActive(false);
-        _playerWin.SetActive(true);
-        _enemyWin.SetActive(false);
-        _gameOutcomeReached = true;
-        _gameOutcome = "Player wins";
-    }
-
-    private void Draw()
-    {
-        _playerDraw.SetActive(true);
-        _playerWin.SetActive(false);
-        _enemyWin.SetActive(false);
-        _gameOutcomeReached = true;
-        _gameOutcome = "The game is a draw";
-    }
-
-    private IEnumerator ResetGameAfter2Seconds()
-    {
-        yield return new WaitForSeconds(2.0f);
-        ResetScore();
-    }
 
     private void StartTimer()
     {
-        _timer.text = ("T: " + CooldownTime);
+
+        timerText.text = ("T: " + CooldownTime);
         if (CooldownTime > 0)
         {
             CooldownTime -= Time.deltaTime;
@@ -180,20 +79,206 @@ public class GameController : MonoBehaviour
         }
     }
 
-    //private void ResetWorseTimer()
-    //{
+    private void ResetWorseTimer()
+    {
+        for (float i = 1; CooldownTime + _timeIncrementIncrease > 0; i++)
+        {
+            _timeIncrementIncrease += -1f;
+            i++;
+            
+        }
+    }
 
-    //}
 
+    // WORK AREA
+
+    //Utilities
+
+    void Start()
+    {
+        CooldownTime += timerTextStartValue;
+    }
+
+    void Update()
+    {
+        Combat();
+        RandomizeColor();
+        PlayerSymbolsInput();
+        GameOutcome();
+    }
+    //KAKO DA GO REFAKTORIRAM PODOBRO OVOJ DEL?
+    private void GameOutcome()
+    {
+        if (_playerTwoChoice == 1 && _playerOneChoice == 1)
+        {
+            Draw();
+        }
+        else if (_playerTwoChoice == 1 && _playerOneChoice == 2)
+        {
+            PlayerWins();
+        }
+        else if (_playerTwoChoice == 1 && _playerOneChoice == 3)
+        {
+            EnemyWins();
+        }
+        else if (_playerTwoChoice == 2 && _playerOneChoice == 1)
+        {
+            EnemyWins();
+        }
+        else if (_playerTwoChoice == 2 && _playerOneChoice == 2)
+        {
+            Draw();
+        }
+        else if (_playerTwoChoice == 2 && _playerOneChoice == 3)
+        {
+            PlayerWins();
+        }
+        else if (_playerTwoChoice == 3 && _playerOneChoice == 1)
+        {
+            PlayerWins();
+        }
+        else if (_playerTwoChoice == 3 && _playerOneChoice == 2)
+        {
+            EnemyWins();
+        }
+        else if (_playerTwoChoice == 3 && _playerOneChoice == 3)
+        {
+            Draw();
+        }
+        if (_playerOneChoice > 0 && _playerTwoChoice > 0)
+        {
+            gameOutcomeText.text = gameOutcome;
+            RandomizeColor();
+        }
+    }
+
+    private void EnemyWins()
+    {
+        gameOutcome = "Black wins";
+    }
+
+    private void PlayerWins()
+    {
+        gameOutcome = "White wins";
+    }
+
+    private void Draw()
+    {
+        gameOutcome = "Draw";
+    }
+
+    private void PlayerSymbolsInput()
+    {
+        PlayerOneChoice();
+        PlayerTwoChoice();
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _playerOneChoice = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            _playerOneChoice = 2;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            _playerOneChoice = 3;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            _playerTwoChoice = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            _playerTwoChoice = 2;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            _playerTwoChoice = 3;
+        }
+    }
+
+
+    private void PlayerOneChoice()
+    {
+        switch (_playerOneChoice)
+        {
+            case 0:
+                _playerOneChoice = 0;
+                _playerRock.SetActive(!true);
+                _playerPaper.SetActive(!true);
+                _playerScissors.SetActive(!true);
+                break;
+            case 1:
+                _playerOneChoice = 1;
+                _playerRock.SetActive(true);
+                _playerPaper.SetActive(!true);
+                _playerScissors.SetActive(!true);
+                break;
+            case 2:
+                _playerOneChoice = 2;
+                _playerRock.SetActive(!true);
+                _playerPaper.SetActive(true);
+                _playerScissors.SetActive(!true);
+                break;
+            case 3:
+                _playerOneChoice = 3;
+                _playerRock.SetActive(!true);
+                _playerPaper.SetActive(!true);
+                _playerScissors.SetActive(true);
+                break;
+            default:
+                Debug.Log("Invalid Player One Input");
+                break;
+        }
+    }
+
+    private void PlayerTwoChoice()
+    {
+        switch (_playerTwoChoice)
+        {
+            case 0:
+                _playerTwoChoice = 0;
+                _enemyRock.SetActive(!true);
+                _enemyPaper.SetActive(!true);
+                _enemyScissors.SetActive(!true);
+                break;
+            case 1:
+                _playerTwoChoice = 1;
+                _enemyRock.SetActive(true);
+                _enemyPaper.SetActive(!true);
+                _enemyScissors.SetActive(!true);
+                break;
+            case 2:
+                _playerTwoChoice = 2;
+                _enemyRock.SetActive(!true);
+                _enemyPaper.SetActive(true);
+                _enemyScissors.SetActive(!true);
+                break;
+            case 3:
+                _playerTwoChoice = 3;
+                _enemyRock.SetActive(!true);
+                _enemyPaper.SetActive(!true);
+                _enemyScissors.SetActive(true);
+                break;
+            default:
+                Debug.Log("Invalid Player Two Input");
+                break;
+        }
+    }
+
+
+    //Miscellaneous
 
     private void RandomizeColor()
     {
-        if (Input.anyKey && CooldownTime > 0)
+        Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
+        if (Input.anyKey)
         {
-            Color newColor = new Color(Random.value, Random.value, Random.value, 1.0f);
-            _timer.color = newColor;
+            timerText.color = newColor;
+            gameOutcomeText.color = newColor;
         }
-
     }
+    
 
+    
 }
