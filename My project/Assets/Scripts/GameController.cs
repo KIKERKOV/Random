@@ -339,7 +339,7 @@ public class GameController : MonoBehaviour
         {
             timerText.color = newColor;
             gameOutcomeText.color = newColor;
-            _transparencyFactor = 0.1f * (cooldownStartValue + _timeIncrementIncrease);
+            _transparencyFactor = Random.Range(0.2f, 0.8f);
 
         }
         if (_transparencyFactor < 0.2f)
