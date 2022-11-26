@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
     private int _playerTwoChoice = 0;
     [SerializeField] private int _combatPhase = 0;
     private float _transparencyFactor = 0f;
-    private float _maxTransparency = 1.0f;
+    //private float _maxTransparency = 1.0f;
     private float _minTransparency = 0.2f;
 
 
@@ -345,6 +345,10 @@ public class GameController : MonoBehaviour
         if (_transparencyFactor < 0.2f)
         {
             _transparencyFactor = _minTransparency;
+        }
+        if (CooldownTime == 0)
+        {
+            _transparencyFactor = 1.0f;
         }
     }
     
