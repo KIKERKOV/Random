@@ -23,9 +23,6 @@ public class SkillGameController : MonoBehaviour
 
     {
         // Count how much time has passed between combat 
-        
-
-        
 
     }    
 

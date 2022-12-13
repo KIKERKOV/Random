@@ -194,7 +194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10
+  m_Text: 
 --- !u!222 &99949902
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -754,7 +754,6 @@ GameObject:
   - component: {fileID: 665444158}
   - component: {fileID: 665444157}
   - component: {fileID: 665444156}
-  - component: {fileID: 665444160}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -850,37 +849,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &665444160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 665444155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db7f4551f8cee5e46a8682731b296d31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnablePlayerInput: 0
-  _enemyRock: {fileID: 1100273033}
-  _enemyPaper: {fileID: 610135427}
-  _enemyScissors: {fileID: 1775474883}
-  _playerRock: {fileID: 2070480928}
-  _playerPaper: {fileID: 794459194}
-  _playerScissors: {fileID: 1310872318}
-  gameOutcomeText: {fileID: 946116499}
-  _playerTwoChoiceText: 
-  _playerOneChoiceText: 
-  gameOutcome: 
-  Timer: {fileID: 915375450}
-  PlayerBackground: {fileID: 787154993}
-  EnemyBackground: {fileID: 1232611716}
-  CooldownTime: 0
-  cooldownStartValue: 10
-  _timeIncrementIncrease: 0
-  timerText: {fileID: 99949901}
-  _combatPhase: 0
 --- !u!1 &787154993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,7 +1127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7f4551f8cee5e46a8682731b296d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnablePlayerInput: 0
   _enemyRock: {fileID: 1100273033}
   _enemyPaper: {fileID: 610135427}
   _enemyScissors: {fileID: 1775474883}
@@ -1167,17 +1134,11 @@ MonoBehaviour:
   _playerPaper: {fileID: 794459194}
   _playerScissors: {fileID: 1310872318}
   gameOutcomeText: {fileID: 946116499}
-  _playerTwoChoiceText: 
-  _playerOneChoiceText: 
   gameOutcome: 
   Timer: {fileID: 915375450}
   PlayerBackground: {fileID: 0}
   EnemyBackground: {fileID: 0}
-  CooldownTime: 0
-  cooldownStartValue: 10
-  _timeIncrementIncrease: 0
   timerText: {fileID: 99949901}
-  _combatPhase: 0
 --- !u!4 &915375452
 Transform:
   m_ObjectHideFlags: 0
@@ -1402,6 +1363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1100273035}
   - component: {fileID: 1100273034}
+  - component: {fileID: 1100273036}
   m_Layer: 0
   m_Name: EnemyRock
   m_TagString: Untagged
@@ -1468,14 +1430,34 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100273033}
-  m_LocalRotation: {x: 0, y: 0, z: -0.9997825, w: 0.020855254}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.9997825, w: 0.020855254}
+  m_LocalPosition: {x: -4.9999843, y: 0.000020742416, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 615509981}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -177.61}
+--- !u!95 &1100273036
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100273033}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1232611716
 GameObject:
   m_ObjectHideFlags: 0
