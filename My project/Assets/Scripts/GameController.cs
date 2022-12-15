@@ -18,11 +18,14 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject PlayerBackground;
     [SerializeField] private GameObject EnemyBackground;
     [SerializeField] private Text timerText;
- 
+    private Animator _p1_Symbol;
+
+
     private int CooldownTimer = 10;
  
     private void Start()
     {
+        _p1_Symbol = GetComponent<Animator>();
         Debug.Log("Start");
     }
 
@@ -36,6 +39,7 @@ public class GameController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            _p1_Symbol.SetTrigger("Trigger_1");
             _enemyRock.SetActive(true);
             _enemyPaper.SetActive(false);
             _enemyScissors.SetActive(false);
