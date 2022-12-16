@@ -9,7 +9,7 @@ public class Main_Menu_UI : MonoBehaviour
     public void StartGame()
     {
         Debug.Log("I was clicked");
-        SceneManager.LoadScene("LuckCombat", LoadSceneMode.Single);
+        SceneManager.LoadScene("NewGame", LoadSceneMode.Single);
     }
 
     public void ExitGame()

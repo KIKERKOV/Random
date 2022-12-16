@@ -8,11 +8,17 @@ public class GameController : MonoBehaviour
 {
     private Combat _combat;
     private Scissors _scissors;
+    private Audio _audio;
+
+    // To DO next - https://docs.unity.cn/2019.2/Documentation/Manual/webgl-templates.html
+    // https://docs.unity3d.com/Manual/webgl-templates.html
+
 
     void Start()
     {
         _scissors = GameObject.Find("Scissors").GetComponent<Scissors>();
         _combat = GameObject.Find("Combat").GetComponent<Combat>();
+        _audio = GameObject.Find("Audio").GetComponent<Audio>();
         if (_scissors == null)
         {
             Debug.LogWarning("Scissors is NULL");
@@ -20,6 +26,10 @@ public class GameController : MonoBehaviour
         if (_combat == null)
         {
             Debug.LogWarning("Combat is NULL");
+        }
+        if (_audio == null)
+        {
+            Debug.LogWarning("A udio is NULL");
         }
     }
 
@@ -29,6 +39,8 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             _combat.Scissors();
+            _audio.RickRoll();
+
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
