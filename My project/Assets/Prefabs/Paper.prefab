@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 7416946706579304710}
   - component: {fileID: 7416946706579304713}
   - component: {fileID: 7416946706579304712}
-  - component: {fileID: 7416946706579304711}
   m_Layer: 5
-  m_Name: Scissors
+  m_Name: Paper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.037677, y: 0.066764}
-  m_SizeDelta: {x: 954.07, y: 536.67}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1104.854, y: 621.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7416946706579304710
 CanvasRenderer:
@@ -68,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f41b43f0f4231a34197eaa89dc33643f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -88,7 +87,7 @@ Animator:
   m_GameObject: {fileID: 7416946706579304714}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fc42ccf4a06a9a448a9176a3d0067b24, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -98,17 +97,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7416946706579304711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7416946706579304714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c43966b7cbdad4748b2761b9512edca0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ScissorsAnimator: {fileID: 7416946706579304712}
-  Scissors_Anim_Speed: 1
